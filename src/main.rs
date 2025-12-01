@@ -57,7 +57,7 @@ async fn main() {
 // We specify our return type, `&'static str`, however a route handler can return anything that implements `IntoResponse`
 
 async fn root() -> &'static str {
-    "Hello, World!"
+    "Hello, World2!"
 }
 
 // This is our route handler, for the route complex
@@ -72,7 +72,7 @@ async fn complex() -> impl IntoResponse {
     (
         StatusCode::OK,
         Json(serde_json::json!({
-            "message": "Hello, World!"
+            "message": "Hello, World2!"
         })),
     )
 }
