@@ -29,10 +29,18 @@ bevy = "0.14"
 bevy_rapier2d = { version = "0.27", features = ["simd-stable", "debug-render-2d"] } 
 hexx = "0.20"
 rand = "0.8"
-image = { version = "0.25", default-features = false, features = ["png", "jpeg"] } # Pin image and disable moxcms default feature
+image = { version = "0.25", default-features = false, features = ["png", "jpeg"] }
+
+# Explicit dependency pinning to avoid unstable features
+moxcms = "=0.7.1"
+pxfm = "=0.1.23"
+uuid = { version = "=1.10.0", features = ["v4", "js"] }
+
+# Wasm support
+wasm-bindgen = "0.2"
+getrandom = { version = "0.2", features = ["js"] }
 
 [target.'cfg(target_arch = "wasm32")'.dependencies]
-getrandom = { version = "0.2", features = ["js"] }
 bevy = { version = "0.14", default-features = false, features = ["bevy_winit", "bevy_asset", "bevy_core_pipeline", "bevy_sprite", "bevy_ui", "bevy_text", "webgl2"] }
 
 [profile.dev]
@@ -44,3 +52,4 @@ opt-level = 3
 [profile.release]
 lto = true
 codegen-units = 1
+opt-level = 'z'
