@@ -5,9 +5,41 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[lib]
+path = "src/lib.rs"
+
+[[bin]]
+name = "server"
+path = "src/main.rs"
+
+[[bin]]
+name = "client"
+path = "src/bin/client.rs"
+
 [dependencies]
 axum = "0.7.4"
+serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0.104"
 tokio = { version = "1.29.1", features = ["full"] }
 tracing = "0.1.37"
 tracing-subscriber = "0.3.17"
+
+# Game Dependencies
+bevy = "0.14"
+bevy_rapier2d = { version = "0.27", features = ["simd-stable", "debug-render-2d"] } 
+hexx = "0.20"
+rand = "0.8"
+
+[target.'cfg(target_arch = "wasm32")'.dependencies]
+getrandom = { version = "0.2", features = ["js"] }
+bevy = { version = "0.14", default-features = false, features = ["bevy_winit", "bevy_asset", "bevy_core_pipeline", "bevy_sprite", "bevy_ui", "bevy_text", "webgl2"] }
+
+[profile.dev]
+opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 3
+
+[profile.release]
+lto = true
+codegen-units = 1
