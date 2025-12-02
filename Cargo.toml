@@ -30,9 +30,6 @@ bevy_rapier2d = { version = "0.27", features = ["simd-stable", "debug-render-2d"
 hexx = "0.20"
 rand = "0.8"
 
-# Force moxcms downgrade
-moxcms = "=0.4.1"
-
 # Wasm support
 wasm-bindgen = "0.2"
 getrandom = { version = "0.2", features = ["js"] }
